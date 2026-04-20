@@ -1,0 +1,18 @@
+{
+  "name": "adb-ops",
+  "description": "ADB (Android Debug Bridge) operations for Claude Code — onboard a phone, map folders to local paths, import media, capture screenshots, and manage bloatware with a persistent log.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Rosehill",
+    "email": "public@danielrosehill.com",
+    "url": "https://danielrosehill.com"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/danielrosehill/adb-ops-plugin",
+  "keywords": [
+    "adb",
+    "android",
+    "automation",
+    "device-management"
+  ]
+}
