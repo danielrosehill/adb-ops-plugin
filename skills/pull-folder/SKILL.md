@@ -19,4 +19,4 @@ Ad-hoc pull from the phone.
 
 4. Run `adb pull <phone_path> <local_path>`. Preserve directory structure.
 
-5. Report file count, bytes transferred, destination path. Offer to save this as a new mapping in `~/.claude/adb-ops/mappings.yaml` if the user might repeat it.
+5. Report file count, bytes transferred, destination path. Offer to save this as a new mapping in `<workspace>/mappings.yaml` if the user might repeat it.

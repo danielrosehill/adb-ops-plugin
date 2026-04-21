@@ -8,7 +8,7 @@ Claude Code plugin for Android Debug Bridge (ADB) operations — onboard a phone
 
 ## Workspace
 
-All user state lives at `~/.claude/adb-ops/` (outside the plugin so it survives updates):
+All user state lives under the `$CLAUDE_USER_DATA/adb-ops/` convention (fallback `$XDG_DATA_HOME/claude-plugins/adb-ops/` or `~/.local/share/claude-plugins/adb-ops/`) — outside `~/.claude/` so the workspace survives plugin updates. See `skills/_shared/workspace.md`:
 
 - `profile.yaml` — device info
 - `mappings.yaml` — phone path ↔ local path mappings with labels and use cases

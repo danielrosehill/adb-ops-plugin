@@ -1,6 +1,6 @@
 ---
 name: import-media
-description: Import media (photos, videos, voice memos, downloads) from the connected Android device to the local computer using saved mappings from ~/.claude/adb-ops/mappings.yaml. Supports "import new since last run" (incremental) or full sync. Use when the user says "import my photos", "pull new videos from my phone", or references a mapping label like "import camera-photos".
+description: Import media (photos, videos, voice memos, downloads) from the connected Android device to the local computer using saved mappings from <workspace>/mappings.yaml. Supports "import new since last run" (incremental) or full sync. Use when the user says "import my photos", "pull new videos from my phone", or references a mapping label like "import camera-photos".
 ---
 
 # adb-ops: import-media
@@ -9,7 +9,7 @@ Pull files from the phone to the local computer using pre-configured mappings.
 
 ## Prerequisites
 
-- `~/.claude/adb-ops/mappings.yaml` must exist with at least one mapping whose `direction` is `pull` or `bidirectional`. If missing, tell the user to run the `onboard` skill.
+- `<workspace>/mappings.yaml` must exist with at least one mapping whose `direction` is `pull` or `bidirectional`. If missing, tell the user to run the `onboard` skill.
 
 ## Procedure
 

@@ -1,6 +1,6 @@
 ---
 name: take-screenshot
-description: Capture a screenshot from the connected Android device via ADB and pull it to the local computer. Defaults to saving under ~/Pictures/Phone/Screenshots/ with a timestamped filename, or uses the screenshots mapping from ~/.claude/adb-ops/mappings.yaml if the user has one. Use when the user says "screenshot my phone", "grab a phone screenshot", or wants to capture the current phone screen.
+description: Capture a screenshot from the connected Android device via ADB and pull it to the local computer. Defaults to saving under ~/Pictures/Phone/Screenshots/ with a timestamped filename, or uses the screenshots mapping from <workspace>/mappings.yaml if the user has one. Use when the user says "screenshot my phone", "grab a phone screenshot", or wants to capture the current phone screen.
 ---
 
 # adb-ops: take-screenshot
@@ -12,7 +12,7 @@ Capture and pull a screenshot.
 1. Verify a device is connected (`adb devices`). If multiple, require a serial or ask the user.
 
 2. Determine the destination:
-   - If `~/.claude/adb-ops/mappings.yaml` contains a mapping labelled `screenshots` (or phone_path `/sdcard/Pictures/Screenshots`), use its `local_path`.
+   - If `<workspace>/mappings.yaml` contains a mapping labelled `screenshots` (or phone_path `/sdcard/Pictures/Screenshots`), use its `local_path`.
    - Otherwise default to `~/Pictures/Phone/Screenshots/`. Create it if missing.
 
 3. Capture directly to the host (avoids writing on-device):

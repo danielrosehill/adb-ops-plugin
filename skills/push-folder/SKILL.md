@@ -1,6 +1,6 @@
 ---
 name: push-folder
-description: Push a local folder or file to the connected Android device via `adb push`. Uses mappings from ~/.claude/adb-ops/mappings.yaml when the direction is `push` or `bidirectional`, or accepts ad-hoc source/destination from the user. Use when the user wants to "sync music to phone", "push ringtones", or any local-to-device transfer.
+description: Push a local folder or file to the connected Android device via `adb push`. Uses mappings from <workspace>/mappings.yaml when the direction is `push` or `bidirectional`, or accepts ad-hoc source/destination from the user. Use when the user wants to "sync music to phone", "push ringtones", or any local-to-device transfer.
 ---
 
 # adb-ops: push-folder

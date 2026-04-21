@@ -1,6 +1,6 @@
 ---
 name: remove-bloatware
-description: Remove or disable Android bloatware (carrier apps, OEM pre-installed apps) via ADB using `pm uninstall --user 0` or `pm disable-user`. Logs every operation to ~/.claude/adb-ops/bloatware-log.jsonl so the history is auditable and reversible. Use when the user wants to "remove bloatware", "uninstall carrier apps", "disable pre-installed apps", or "debloat my phone".
+description: Remove or disable Android bloatware (carrier apps, OEM pre-installed apps) via ADB using `pm uninstall --user 0` or `pm disable-user`. Logs every operation to <workspace>/bloatware-log.jsonl so the history is auditable and reversible. Use when the user wants to "remove bloatware", "uninstall carrier apps", "disable pre-installed apps", or "debloat my phone".
 ---
 
 # adb-ops: remove-bloatware
@@ -37,7 +37,7 @@ Remove or disable unwanted packages on the device.
    adb shell pm uninstall --user 0 <package>
    ```
 
-4. **Log** every attempt (success or failure) by appending one JSON line to `~/.claude/adb-ops/bloatware-log.jsonl`:
+4. **Log** every attempt (success or failure) by appending one JSON line to `<workspace>/bloatware-log.jsonl`:
 
    ```json
    {"ts":"<ISO-8601>","device":"<serial>","action":"disable|uninstall","package":"<pkg>","user":0,"method":"<cmd>","result":"success|failure","error":"<stderr if any>","notes":"<free text>"}
