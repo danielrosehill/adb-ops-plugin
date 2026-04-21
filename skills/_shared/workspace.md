@@ -1,14 +1,27 @@
 # adb-ops workspace conventions
 
-All skills in this plugin read/write user state from a single workspace directory:
+All skills in this plugin read/write user state from a single workspace directory. The workspace resolves as `$CLAUDE_USER_DATA/adb-ops/` if `CLAUDE_USER_DATA` is set; otherwise `$XDG_DATA_HOME/claude-plugins/adb-ops/` if `XDG_DATA_HOME` is set; otherwise `~/.local/share/claude-plugins/adb-ops/`. Create the directory if it doesn't exist. See the canonical convention in the `meta-tools:plugin-data-storage` skill.
+
+Shell form:
+
+```bash
+ADB_OPS_WORKSPACE="${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/adb-ops"
+mkdir -p "$ADB_OPS_WORKSPACE"
+```
+
+Referred to below as `<workspace>/`.
 
 ```
-~/.claude/adb-ops/
+<workspace>/
 ├── profile.yaml          # phone model, Android version, rooted status, notes
 ├── mappings.yaml         # phone path -> local path mappings, with labels + use cases
 ├── bloatware-log.jsonl   # append-only log of package removals/restorations
 └── devices/<serial>/     # per-device overrides (optional)
 ```
+
+## Migration from legacy path (one-time)
+
+Before using the workspace, check for legacy data at `~/.claude/adb-ops/`. If the legacy directory exists AND the new workspace is empty, move every file (`profile.yaml`, `mappings.yaml`, `bloatware-log.jsonl`, `devices/`) to the new location and delete the legacy directory. Tell the user: "Migrated adb-ops workspace from ~/.claude/adb-ops/ to <new>."
 
 ## profile.yaml schema
 
@@ -53,4 +66,4 @@ Actions: `uninstall`, `disable`, `restore`, `enable`.
 
 - Always `adb devices` first; if multiple devices, require `-s <serial>` and confirm with the user.
 - Treat the workspace as the source of truth — re-read it each invocation rather than caching.
-- If `~/.claude/adb-ops/` is missing, prompt the user to run the `onboard` skill first.
+- If `<workspace>/` is missing or empty, prompt the user to run the `onboard` skill first.

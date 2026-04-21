@@ -1,16 +1,24 @@
 ---
 name: onboard
-description: First-run onboarding for the adb-ops plugin. Interview the user about the Android device connected via ADB — model, Android version, rooted status — then collect folder mappings (phone path to local path, with labels and use cases). Writes profile and mappings to the adb-ops workspace at ~/.claude/adb-ops/. Use this before any other adb-ops skill, or whenever the user wants to add a new phone folder mapping.
+description: First-run onboarding for the adb-ops plugin. Interview the user about the Android device connected via ADB — model, Android version, rooted status — then collect folder mappings (phone path to local path, with labels and use cases). Writes profile and mappings to the adb-ops workspace at <workspace>/. Use this before any other adb-ops skill, or whenever the user wants to add a new phone folder mapping.
 ---
 
 # adb-ops: onboard
 
 Establish the persistent profile for a phone the user manages via ADB.
 
+## Migration from legacy path (one-time)
+
+Before resolving the workspace, check for legacy data at `~/.claude/adb-ops/`. If the legacy directory exists AND the new workspace is empty, move every file (`profile.yaml`, `mappings.yaml`, `bloatware-log.jsonl`, `devices/`) to the new location and delete the legacy directory. Tell the user: "Migrated adb-ops workspace from ~/.claude/adb-ops/ to <new>."
+
+## Workspace resolution
+
+Resolve the workspace directory as `$CLAUDE_USER_DATA/adb-ops/` if `CLAUDE_USER_DATA` is set; otherwise `$XDG_DATA_HOME/claude-plugins/adb-ops/` if `XDG_DATA_HOME` is set; otherwise `~/.local/share/claude-plugins/adb-ops/`. Create the directory if it doesn't exist. See the canonical convention in the `meta-tools:plugin-data-storage` skill. Referred to as `<workspace>/` throughout this plugin.
+
 ## When to use
 
 - User says "set up adb", "onboard my phone", "add a new phone mapping".
-- Any other adb-ops skill finds no `~/.claude/adb-ops/profile.yaml` — ask the user whether to run onboarding first.
+- Any other adb-ops skill finds no `<workspace>/profile.yaml` — ask the user whether to run onboarding first.
 
 ## Prerequisites
 
@@ -19,7 +27,7 @@ Establish the persistent profile for a phone the user manages via ADB.
 
 ## Procedure
 
-1. **Create workspace** at `~/.claude/adb-ops/` if it does not exist.
+1. **Create workspace** at `<workspace>/` if it does not exist.
 
 2. **Detect device** and pre-fill what ADB already knows:
 
